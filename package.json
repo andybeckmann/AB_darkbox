@@ -1,0 +1,21 @@
+{
+  "name": "AB_darkbox",
+  "version": "1.0.0",
+  "description": "A lightbox built with JS and SCSS",
+  "author": {
+    "name": "Andy Beckmann",
+    "email": "contact@andybeckmann.com",
+    "url": "https://www.andybeckmann.com"
+  },
+  "repository": "github:andybeckmann/AB_web_tools",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-cli": "*",
+    "grunt-dart-sass": "*",
+    "grunt-contrib-cssmin": "*",
+    "grunt-contrib-watch": "*",
+    "load-grunt-tasks": "*"
+  }
+}
