@@ -1,7 +1,7 @@
 {
   "name": "AB_darkbox",
   "version": "1.0.0",
-  "description": "A lightbox built with JS and SCSS",
+  "description": "An image lightbox with captions",
   "author": {
     "name": "Andy Beckmann",
     "email": "contact@andybeckmann.com",
