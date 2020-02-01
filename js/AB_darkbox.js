@@ -23,8 +23,8 @@ function darkbox() {
 
 					// Remove darkbox
 					document.getElementsByTagName('body')[0].removeChild(darkboxOverlay);
-					});
-				}
+				});
+			}
 		});
 
 		// Select darkboxes
