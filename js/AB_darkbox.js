@@ -22,14 +22,15 @@ function darkbox() {
 				// Hold up
 				e.preventDefault();
 
-				// Target img and its src
+				// Extract data from the current image
 				var darkboxImage = this.getElementsByTagName('img');
 				var darkboxImageSrc = darkboxImage[0].getAttribute('src');
+				var darkboxCaptionText = darkboxImage[0].getAttribute('alt');
 
-				// Create darkbox with targeted img src
+				// Create darkbox with extracted data
 				var darkboxTemplate = document.createElement('div');
 				darkboxTemplate.setAttribute('id', 'darkbox');
-				darkboxTemplate.innerHTML = "<div class='darkbox-content'><span>&times;</span> <span>Click to close</span><img src='" + darkboxImageSrc + "'></div>";
+				darkboxTemplate.innerHTML = "<div class='darkbox-content'><span>&times;</span><span>Click to close</span><img src='" + darkboxImageSrc + "'><div class='darkbox-caption'>" + darkboxCaptionText + "</div></div>";
 
 				// Append new element
 				document.body.appendChild(darkboxTemplate);
