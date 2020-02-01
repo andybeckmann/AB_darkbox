@@ -10,23 +10,6 @@ function darkbox() {
 	// If window is above 768px
 	if (window.innerWidth > 768) {
 
-		// Add click event listener to body
-		document.getElementsByTagName('body')[0].addEventListener('click', function() {
-
-			// If darkbox exists
-			if (document.getElementById('darkbox') != undefined) {
-
-				document.getElementById('darkbox').addEventListener('click', function() {
-
-					// Target darkbox-overlay
-					var darkboxOverlay = document.getElementById('darkbox');
-
-					// Remove darkbox
-					document.getElementsByTagName('body')[0].removeChild(darkboxOverlay);
-				});
-			}
-		});
-
 		// Select darkboxes
 		var darkboxes = document.getElementsByClassName('darkbox');
 
@@ -46,11 +29,43 @@ function darkbox() {
 				// Create darkbox with targeted img src
 				var darkboxTemplate = document.createElement('div');
 				darkboxTemplate.setAttribute('id', 'darkbox');
-				darkboxTemplate.innerHTML = "<div class='darkbox-content'><img src='" + darkboxImageSrc + "'></div>";
+				darkboxTemplate.innerHTML = "<div class='darkbox-content'><span>&times;</span> <span>Click to close</span><img src='" + darkboxImageSrc + "'></div>";
 
 				// Append new element
-				document.getElementsByTagName('body')[0].appendChild(darkboxTemplate);
+				document.body.appendChild(darkboxTemplate);
 			});
 		}
+
+		// Add click event listener to body
+		document.body.addEventListener('click', function() {
+
+			// If darkbox exists
+			if (document.getElementById('darkbox') != undefined) {
+
+				// Add event listener to darkbox
+				document.getElementById('darkbox').addEventListener('click', function() {
+
+					// Target darkbox-overlay
+					var darkboxOverlay = document.getElementById('darkbox');
+
+					// Remove darkbox
+					document.body.removeChild(darkboxOverlay);
+				});
+
+				// On any key press
+				window.onkeydown = function (e) {
+					
+					// If escape key
+					if(e.keyCode == 27) {
+
+				        // Target darkbox-overlay
+						var darkboxOverlay = document.getElementById('darkbox');
+
+						// Remove darkbox
+						document.body.removeChild(darkboxOverlay);
+				    }
+				}
+			}
+		});
 	}
 }

@@ -7,16 +7,35 @@
 	width: 100%;
     height: 100%;
     position: absolute;
-    background: rgba(0,0,0,0.75);
+    background: rgba(0,0,0,0.9);
     top: 0;
     left: 0;
+    text-align: center;
+    padding: 20px 0;
+    cursor: pointer;
 
     img {
     	width: 100%;
-		max-width: 900px;
+		max-width: 750px;
 		margin: 20px auto;
 		display: inherit;
 		box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    }
+
+    span:nth-child(1) {
+        font-size: 20px;
+        background: #fff;
+        color: #222;
+        padding: 0px 6px;
+        border-radius: 15px;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    span:nth-child(2) {
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: bold;
     }
 }
 
@@ -44,7 +63,7 @@ a.darkbox {
         left: 0;
         background: rgba(0,0,0,0.65);
         opacity: 0;
-        transition: .5s ease opacity;
+        transition: .25s ease opacity;
         display: flex;
         align-items: center;
         padding-left: 50%;
