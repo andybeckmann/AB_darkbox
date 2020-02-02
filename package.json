@@ -7,7 +7,7 @@
     "email": "contact@andybeckmann.com",
     "url": "https://www.andybeckmann.com"
   },
-  "repository": "github:andybeckmann/AB_web_tools",
+  "repository": "github:andybeckmann/AB_darkbox",
   "license": "MIT",
   "private": true,
   "devDependencies": {
