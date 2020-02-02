@@ -1,14 +1,4 @@
 {
-  "name": "AB_darkbox",
-  "version": "1.0.0",
-  "description": "An image lightbox with captions",
-  "author": {
-    "name": "Andy Beckmann",
-    "email": "contact@andybeckmann.com",
-    "url": "https://www.andybeckmann.com"
-  },
-  "repository": "github:andybeckmann/AB_darkbox",
-  "license": "MIT",
   "private": true,
   "devDependencies": {
     "grunt": "*",
