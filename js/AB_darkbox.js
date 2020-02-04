@@ -2,71 +2,144 @@
  * AB_darkbox
  * version: 1.0.0
  *
- * darkbox() - A lightbox
+ * darkbox() - A lightbox with navigation and captions
  */
 
 function darkbox() {
 
-	// If window is above 768px
 	if (window.innerWidth > 768) {
 
-		// Select darkboxes
 		var darkboxes = document.getElementsByClassName('darkbox');
 
-		// For each darkbox
 		for (var i = 0; i < darkboxes.length; i++) {
 
-			// Add click event listener
-			darkboxes[i].addEventListener('click', function(e) {
+			var darkboxLoadPosition = i;
 
-				// Hold up
+			/**
+			 * Add event listener to each .darkbox to open the darkbox overlay
+			 */
+			darkboxes[i].addEventListener('click', function(e, darkboxLoadPosition) {
+
 				e.preventDefault();
 
-				// Extract data from the current image
-				var darkboxImage = this.getElementsByTagName('img');
-				var darkboxImageSrc = darkboxImage[0].getAttribute('src');
-				var darkboxCaptionText = darkboxImage[0].getAttribute('alt');
+				var darkboxLoadPosition = e.srcElement;
 
-				// Create darkbox with extracted data
+				var darkboxImage = this.getElementsByTagName('img');
+				var darkboxImageSrc = darkboxImage[0].src;
+				var darkboxCaptionText = darkboxImage[0].alt;
+
+				var backButtonStatus = '',
+					nextButtonStatus = '';
+
+				if (this.previousElementSibling.classList.contains('darkbox') == false) {
+					backButtonStatus = 'class="inactive"';
+
+				} else if (this.nextElementSibling.classList.contains('darkbox') == false) {
+					nextButtonStatus = ' class="inactive"';
+				}
+
 				var darkboxTemplate = document.createElement('div');
 				darkboxTemplate.setAttribute('id', 'darkbox');
-				darkboxTemplate.innerHTML = "<div class='darkbox-content'><span>&times;</span><span>Click to close</span><img src='" + darkboxImageSrc + "'><div class='darkbox-caption'>" + darkboxCaptionText + "</div></div>";
+				darkboxTemplate.innerHTML = "<div id='darkbox-top'><span>&times;</span><span>Click to close</span></div><div id='darkbox-content'><div id='darkbox-content-back'" + backButtonStatus + "><span>▸</span></div><div id='darkbox-content-image'><img id='darkbox-content-image-element' src='" + darkboxImageSrc + "' alt='" + darkboxCaptionText + "'><div id='darkbox-caption'>" + darkboxCaptionText + "</div></div><div id='darkbox-content-next'" + nextButtonStatus + "><span>▸</span></div></div></div>";
 
-				// Append new element
 				document.body.appendChild(darkboxTemplate);
-			});
-		}
 
-		// Add click event listener to body
-		document.body.addEventListener('click', function() {
+				/**
+				 * Add event listener to navigate to previous darkbox
+				 */
+				document.getElementById('darkbox-content-back').addEventListener('click', function() { 
 
-			// If darkbox exists
-			if (document.getElementById('darkbox') != undefined) {
+					var previousElement = darkboxLoadPosition.previousElementSibling;
+					var previousElementSrc = darkboxLoadPosition.previousElementSibling.href;
 
-				// Add event listener to darkbox
-				document.getElementById('darkbox').addEventListener('click', function() {
+					if (darkboxLoadPosition.previousElementSibling.children[0] != undefined) {
+						var	previousElementCaption = darkboxLoadPosition.previousElementSibling.children[0].alt;
+					} else {
+						return;
+					}
 
-					// Target darkbox-overlay
-					var darkboxOverlay = document.getElementById('darkbox');
+					darkboxImageSrc = previousElementSrc;
+					darkboxCaptionText = previousElementCaption;
 
-					// Remove darkbox
-					document.body.removeChild(darkboxOverlay);
+					var oldImage = document.getElementById('darkbox-content-image-element');
+					document.getElementById('darkbox-content-image-element').parentNode.removeChild(oldImage);
+
+					var oldCaption = document.getElementById('darkbox-caption');
+					document.getElementById('darkbox-caption').parentNode.removeChild(oldCaption);
+
+					var darkboxContentImage = document.getElementById('darkbox-content-image');
+					darkboxContentImage.insertAdjacentHTML("afterbegin", "<img id='darkbox-content-image-element' src='" + darkboxImageSrc + "' alt='" + darkboxCaptionText + "'><div id='darkbox-caption'>" + darkboxCaptionText + "</div>");
+
+					darkboxLoadPosition = darkboxLoadPosition.previousElementSibling;
+
+					if (darkboxLoadPosition.previousElementSibling.classList.contains('darkbox') == false) {
+						backButtonStatus = 'class="inactive"';
+						document.getElementById('darkbox-content-back').classList.add('inactive');
+					}
+
+					document.getElementById('darkbox-content-next').classList.remove('inactive');
 				});
 
-				// On any key press
+				/**
+				 * Add event listener to navigate to next darkbox
+				 */
+				document.getElementById('darkbox-content-next').addEventListener('click', function() { 
+
+					var nextElement = darkboxLoadPosition.nextElementSibling;
+					var nextElementSrc = darkboxLoadPosition.nextElementSibling.href;
+
+					if (darkboxLoadPosition.nextElementSibling.children[0] != undefined) {
+						var	nextElementCaption = darkboxLoadPosition.nextElementSibling.children[0].alt;
+					} else {
+						return;
+					}
+
+					darkboxImageSrc = nextElementSrc;
+					darkboxCaptionText = nextElementCaption;
+
+					var oldImage = document.getElementById('darkbox-content-image-element');
+					document.getElementById('darkbox-content-image-element').parentNode.removeChild(oldImage);
+
+					var oldCaption = document.getElementById('darkbox-caption');
+					document.getElementById('darkbox-caption').parentNode.removeChild(oldCaption);
+
+					var darkboxContentImage = document.getElementById('darkbox-content-image');
+					darkboxContentImage.insertAdjacentHTML("afterbegin", "<img id='darkbox-content-image-element' src='" + darkboxImageSrc + "' alt='" + darkboxCaptionText + "'><div id='darkbox-caption'>" + darkboxCaptionText + "</div>");
+
+					darkboxLoadPosition = darkboxLoadPosition.nextElementSibling;
+
+					if (darkboxLoadPosition.nextElementSibling.nextElementSibling.classList.contains('darkbox') == false) {
+						nextButtonStatus = 'class="inactive"';
+						document.getElementById('darkbox-content-next').classList.add('inactive');
+					}
+
+					document.getElementById('darkbox-content-back').classList.remove('inactive');
+				});				
+
+				/**
+				 *	Add event listner to close darkbox when the close button is clicked
+				 */
+				document.getElementById('darkbox-top').addEventListener('click', function() {
+
+					var darkboxOverlay = document.getElementById('darkbox');
+
+					if (document.getElementById('darkbox') != null) {
+						document.body.removeChild(darkboxOverlay);
+					}
+				});
+
+				/**
+				 * Close darkbox when ESC is pressed
+				 */
 				window.onkeydown = function (e) {
-					
-					// If escape key
+
 					if(e.keyCode == 27) {
 
-				        // Target darkbox-overlay
 						var darkboxOverlay = document.getElementById('darkbox');
-
-						// Remove darkbox
 						document.body.removeChild(darkboxOverlay);
 				    }
 				}
-			}
-		});
+			});
+		}
 	}
 }
