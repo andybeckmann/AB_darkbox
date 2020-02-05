@@ -41,7 +41,7 @@ body {
 #darkbox #darkbox-top svg {
   width: 35px;
   fill: #fff;
-  margin-top: -15px;
+  margin: 0 25px -10px 25px;
 }
 #darkbox #darkbox-top span {
   color: #fff;
