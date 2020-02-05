@@ -13,8 +13,6 @@ function darkbox() {
 
 		for (var i = 0; i < darkboxes.length; i++) {
 
-			var darkboxLoadPosition = i;
-
 			/**
 			 * Add event listener to each .darkbox to open the darkbox overlay
 			 */
