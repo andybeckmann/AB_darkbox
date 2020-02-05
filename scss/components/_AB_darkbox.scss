@@ -11,22 +11,18 @@
     top: 0;
     left: 0;
     text-align: center;
-    padding: 20px 0;
+    padding: 40px 0;
 
     #darkbox-top {
         cursor: pointer;
 
-        span:nth-child(1) {
-            font-size: 24px;
-            background: #fff;
-            color: #222;
-            padding: 0 8px 2px 7px;
-            border-radius: 15px;
-            font-weight: bold;
-            margin-right: 10px;
+        svg { 
+            width: 35px;
+            fill: #fff;
+            margin-top: -15px;
         }
 
-        span:nth-child(2) {
+        span {
             color: #fff;
             text-transform: uppercase;
         }
@@ -38,58 +34,36 @@
         display: flex;
         
         #darkbox-content-image {
+            padding-top: 40px;
+
             img {
                 width: 100%;
                 max-width: 750px;
-                margin: 20px auto;
+                margin: 0 auto;
                 display: inherit;
                 box-shadow: 0 0 10px rgba(0,0,0,0.8);
+            }
+
+            #darkbox-caption {
+                padding-top: 40px;
+                color: #fff;
+                font-style: italic;
+                font-size: 18px;
             }
         }
 
         #darkbox-content-back, #darkbox-content-next {
             margin-top: 45%;
-
-            span {
-                font-size: 24px;
-                line-height: 24px;
-                background: #fff;
-                color: #222;
-                padding: 5px 10px;
-                border-radius: 3px;
-                font-weight: bold;
-                display: block;
-                cursor: pointer;
-            }
+            fill: #fff;
+            width: 50px;
+            cursor: pointer;
+            margin: auto 25px;
 
             &.inactive {
                 opacity: 0.25;
-
-                span {
-                    cursor: inherit;
-                }
+                cursor: inherit;
             }
         }
-
-        #darkbox-content-back {
-            margin-right: 25px;
-            margin-left: 25px;
-
-            span {
-                transform: rotate(180deg);
-            }
-        }
-
-        #darkbox-content-next {
-            margin-right: 25px;
-            margin-left: 25px;
-        }
-    }
-
-    #darkbox-caption {
-        color: #fff;
-        font-style: italic;
-        font-size: 18px;
     }
 }
 
