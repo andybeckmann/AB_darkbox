@@ -108,7 +108,7 @@ function darkbox() {
 
 					darkboxLoadPosition = darkboxLoadPosition.nextElementSibling;
 
-					if (darkboxLoadPosition.nextElementSibling.nextElementSibling.classList.contains('darkbox') == false) {
+					if (darkboxLoadPosition.nextElementSibling.classList.contains('darkbox') == false) {
 						nextButtonStatus = 'class="inactive"';
 						document.getElementById('darkbox-content-next').classList.add('inactive');
 					}
