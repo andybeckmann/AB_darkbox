@@ -20,7 +20,7 @@ function darkbox() {
 
 				e.preventDefault();
 
-				var darkboxLoadPosition = e.srcElement;
+				darkboxLoadPosition = e.srcElement;
 
 				var darkboxImage = this.getElementsByTagName('img');
 				var darkboxImageSrc = darkboxImage[0].src;
@@ -49,9 +49,10 @@ function darkbox() {
 
 					var previousElement = darkboxLoadPosition.previousElementSibling;
 					var previousElementSrc = darkboxLoadPosition.previousElementSibling.href;
+					var previousElementCaption = '';
 
 					if (darkboxLoadPosition.previousElementSibling.children[0] != undefined) {
-						var	previousElementCaption = darkboxLoadPosition.previousElementSibling.children[0].alt;
+						previousElementCaption = darkboxLoadPosition.previousElementSibling.children[0].alt;
 					} else {
 						return;
 					}
@@ -85,9 +86,10 @@ function darkbox() {
 
 					var nextElement = darkboxLoadPosition.nextElementSibling;
 					var nextElementSrc = darkboxLoadPosition.nextElementSibling.href;
+					var nextElementCaption = '';
 
 					if (darkboxLoadPosition.nextElementSibling.children[0] != undefined) {
-						var	nextElementCaption = darkboxLoadPosition.nextElementSibling.children[0].alt;
+						nextElementCaption = darkboxLoadPosition.nextElementSibling.children[0].alt;
 					} else {
 						return;
 					}
@@ -136,7 +138,7 @@ function darkbox() {
 						var darkboxOverlay = document.getElementById('darkbox');
 						document.body.removeChild(darkboxOverlay);
 				    }
-				}
+				};
 			});
 		}
 	}
