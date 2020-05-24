@@ -15,12 +15,6 @@ body {
   padding: 20px 35px;
 }
 
-@media (min-width: 768px) {
-  body img {
-    max-width: 250px;
-  }
-}
-
 /**
  * AB_darkbox
  * version: 1.0.0
@@ -81,7 +75,12 @@ body {
   cursor: inherit;
 }
 
-a.darkbox {
+@media (min-width: 768px) {
+  .darkbox-group {
+    display: flex;
+  }
+}
+.darkbox-group a.darkbox {
   position: relative;
   display: inline-block;
   text-decoration: none;
@@ -90,10 +89,16 @@ a.darkbox {
   font-weight: bold;
   overflow: hidden;
 }
-a.darkbox img {
+@media (min-width: 768px) {
+  .darkbox-group a.darkbox {
+    width: calc(100%/6);
+    margin-right: 16px;
+  }
+}
+.darkbox-group a.darkbox img {
   display: block;
 }
-a.darkbox::before {
+.darkbox-group a.darkbox::before {
   display: block;
   content: "View fullsized";
   position: absolute;
@@ -101,14 +106,22 @@ a.darkbox::before {
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(255, 255, 255, 0.1);
   opacity: 0;
   transition: 0.25s ease opacity;
   display: flex;
   align-items: center;
   padding-left: 50%;
   left: -65px;
+  color: #111;
+  font-weight: bold;
+  backdrop-filter: blur(10px);
 }
-a.darkbox:hover::before {
+.darkbox-group a.darkbox:hover::before {
   opacity: 1;
+}
+@media (min-width: 768px) {
+  .darkbox-group a.darkbox:last-of-type {
+    margin-right: 0;
+  }
 }
