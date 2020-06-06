@@ -29,10 +29,12 @@ function darkbox() {
 				var backButtonStatus = '',
 					nextButtonStatus = '';
 
-				if (this.previousElementSibling.classList.contains('darkbox') == false) {
+					console.log(this.previousElementSibling);
+
+				if (this.previousElementSibling == null) {
 					backButtonStatus = 'class="inactive"';
 
-				} else if (this.nextElementSibling.classList.contains('darkbox') == false) {
+				} else if (this.nextElementSibling == null) {
 					nextButtonStatus = ' class="inactive"';
 				}
 
@@ -71,7 +73,7 @@ function darkbox() {
 
 					darkboxLoadPosition = darkboxLoadPosition.previousElementSibling;
 
-					if (darkboxLoadPosition.previousElementSibling.classList.contains('darkbox') == false) {
+					if (darkboxLoadPosition.previousElementSibling == null) {
 						backButtonStatus = 'class="inactive"';
 						document.getElementById('darkbox-content-back').classList.add('inactive');
 					}
@@ -108,7 +110,7 @@ function darkbox() {
 
 					darkboxLoadPosition = darkboxLoadPosition.nextElementSibling;
 
-					if (darkboxLoadPosition.nextElementSibling.classList.contains('darkbox') == false) {
+					if (darkboxLoadPosition.nextElementSibling == null) {
 						nextButtonStatus = 'class="inactive"';
 						document.getElementById('darkbox-content-next').classList.add('inactive');
 					}

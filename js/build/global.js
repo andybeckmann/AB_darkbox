@@ -71,7 +71,7 @@ function darkbox() {
 
 					darkboxLoadPosition = darkboxLoadPosition.previousElementSibling;
 
-					if (darkboxLoadPosition.previousElementSibling.classList.contains('darkbox') == false) {
+					if (darkboxLoadPosition.parentElement.previousElementSibling == null) {
 						backButtonStatus = 'class="inactive"';
 						document.getElementById('darkbox-content-back').classList.add('inactive');
 					}
@@ -108,7 +108,7 @@ function darkbox() {
 
 					darkboxLoadPosition = darkboxLoadPosition.nextElementSibling;
 
-					if (darkboxLoadPosition.nextElementSibling.classList.contains('darkbox') == false) {
+					if (darkboxLoadPosition.parentElement.nextElementSibling == null) {
 						nextButtonStatus = 'class="inactive"';
 						document.getElementById('darkbox-content-next').classList.add('inactive');
 					}
